@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Utility\ILogger;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
+    public $logger;
+
+    public function __construct(ILogger $logger)
+    {
+        $this->logger = $logger;
+    }
     /**
      * Display a listing of the resource.
      */

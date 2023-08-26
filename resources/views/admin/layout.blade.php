@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Datta Able Free Bootstrap 4 Admin Template</title>
+    <title>{{ config('app.name') }}|@yield('title') </title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/themes/admin/assets//plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="/themes/admin/assets//css/style.css">
+
+    @yield('styles')
 
 </head>
 
@@ -62,16 +64,12 @@
                     <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Home</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="bc_button.html" class="">Button</a></li>
-                            <li class=""><a href="bc_badges.html" class="">Badges</a></li>
+                            <li class=""><a href="{{ route('homes.index') }}" class="">Slider items</a></li>
+                            <li class=""><a href="{{ route('homes.create') }}" class="">Add Slider</a></li>
                         </ul>
                     </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">About</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="bc_button.html" class="">Button</a></li>
-                            <li class=""><a href="bc_badges.html" class="">Badges</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">About</span></a>
                     </li>
                     <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Resume</span></a>
@@ -253,6 +251,8 @@
     <script src="/themes/admin/assets//js/vendor-all.min.js"></script>
 	<script src="/themes/admin/assets//plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="/themes/admin/assets//js/pcoded.min.js"></script>
+
+    @yield('scripts')
 
 </body>
 </html>
