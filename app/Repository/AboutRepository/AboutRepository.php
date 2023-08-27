@@ -10,4 +10,9 @@ class AboutRepository extends BaseRepository implements IAboutRepository
     {
         parent::__construct($model);
     }
+
+    public function getData()
+    {
+        return $this->model->first();
+    }
 }

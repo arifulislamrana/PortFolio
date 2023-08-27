@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\CreateSliderRequest;
+use App\Http\Requests\UpdateSlider;
 use App\Repository\HomeRepository\IHomeRepository;
 
 class HomeController extends Controller
@@ -115,7 +116,7 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSlider $request, string $id)
     {
         try
         {

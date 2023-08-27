@@ -5,4 +5,5 @@ use App\Repository\BaseRepository\IBaseRepository;
 
 interface IAboutRepository extends IBaseRepository
 {
+    public function getData();
 }

@@ -1,5 +1,10 @@
 @extends("admin.layout")
 
+@section('title', 'dashboard')
+
+@section('styles')
+@endsection
+
 @section('content')
 <div class="pcoded-content">
     <div class="pcoded-inner-content">

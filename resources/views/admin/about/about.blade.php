@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'editHome')
+@section('title', 'about')
 
 @section('styles')
 @endsection
@@ -19,7 +19,7 @@
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="feather icon-home"></i></a></li>
                                 <li class="breadcrumb-item"><a href="javascript:">Home</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:">Edit Slider</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">About</a></li>
                             </ul>
                         </div>
                     </div>
@@ -45,36 +45,51 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Create Slider</h5>
+                                    <h5>Admin Info.</h5>
+                                    <a style="float: right" href="{{ route('abouts.edit', ['about' => $data->id]) }}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit</button></a>
                                 </div>
                                 <div class="card-body">
                                     <div class="row justify-content-center">
-                                        <div class="col-md-6">
-                                            <form action="{{ route('homes.update', ['home' => $slider->id]) }}" method="POST" enctype="multipart/form-data">
+                                        <div class="col-md-4">
+                                            <form action="#" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">An Intro Line</label>
-                                                    <input type="text" name="intro" class="form-control" id="exampleInputEmail1"
-                                                        aria-describedby="emailHelp" placeholder="Enter intro" value="{{ $slider->intro }}" required>
+                                                    <label for="exampleInputEmail1">Name</label>
+                                                    <h4 class="form-control" id="exampleInputEmail1">{{ $data->name }}</h4>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputPassword1">Designation</label>
-                                                    <input type="text" name="designation" class="form-control" id="exampleInputPassword1"
-                                                        placeholder="designation" value="{{ $slider->designation }}" required>
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <h4 class="form-control" id="exampleInputEmail1">{{ $data->email }}</h4>
                                                 </div>
-
                                                 <div class="form-group">
-                                                    <label for="image">Image(png) :</label>
-                                                    <input name="image" type="file" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" id="image" class="form-control">
+                                                    <label for="exampleInputEmail1">Phone</label>
+                                                    <h4 class="form-control" id="exampleInputEmail1">{{ $data->phone }}</h4>
                                                 </div>
-
-                                                <button type="submit" class="btn btn-primary">Update</button>
                                             </form>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <img id="output" style="margin-top: 5%" src="/{{$slider->image}}" width="50%" height="80%">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Zip</label>
+                                                <h4 class="form-control" id="exampleInputEmail1">{{ $data->zip }}</h4>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Address</label>
+                                                <h4 class="form-control" id="exampleInputEmail1">{{ $data->address }}</h4>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Date of Birth</label>
+                                                <h4 class="form-control" id="exampleInputEmail1">{{ $data->dob }}</h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            @if ($data->image != null)
+                                            <td><img id="output" style="margin-top: 5%" src="{{$data->image}}" width="50%" height="80%"></td>
+                                            @else
+                                            <td><img style="margin-top: 8%" width="50%" height="80%" src="/themes/admin/assets/images/slider/img-slide-1.jpg" alt=""></td>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
