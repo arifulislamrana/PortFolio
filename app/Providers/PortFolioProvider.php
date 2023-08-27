@@ -16,6 +16,8 @@ use App\Repository\ResumeRepository\IResumeRepository;
 use App\Repository\ResumeRepository\ResumeRepository;
 use App\Repository\ServiceRepository\IServiceRepository;
 use App\Repository\ServiceRepository\ServiceRepository;
+use App\Repository\SkillRepository\ISkillRepository;
+use App\Repository\SkillRepository\SkillRepository;
 use App\Repository\UserRepository\IUserRepository;
 
 class PortFolioProvider extends ServiceProvider
@@ -31,6 +33,7 @@ class PortFolioProvider extends ServiceProvider
         $this->app->bind(IAboutRepository::class, AboutRepository::class);
         $this->app->bind(IResumeRepository::class, ResumeRepository::class);
         $this->app->bind(IServiceRepository::class, ServiceRepository::class);
+        $this->app->bind(ISkillRepository::class, SkillRepository::class);
         $this->app->bind(ILogger::class, Logger::class);
     }
 
