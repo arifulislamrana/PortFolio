@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
@@ -43,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('services', ServiceController::class);
 
     Route::resource('skills', SkillController::class);
+
+    Route::resource('projects', ProjectController::class);
 
 });
 
