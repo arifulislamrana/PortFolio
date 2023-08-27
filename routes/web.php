@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('homes', HomeController::class);
 
     Route::resource('abouts', AboutController::class);
+
+    Route::resource('resumes', ResumeController::class);
 
 });
 
