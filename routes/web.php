@@ -54,5 +54,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('blogs', BlogController::class);
 
+    Route::resource('contacts', ContactController::class);
+
 });
 
