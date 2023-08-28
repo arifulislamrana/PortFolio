@@ -10,6 +10,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Repository\BaseRepository\BaseRepository;
 use App\Repository\UserRepository\UserRepository;
 use App\Repository\BaseRepository\IBaseRepository;
+use App\Repository\BlogRepository\BlogRepository;
+use App\Repository\BlogRepository\IBlogRepository;
 use App\Repository\HomeRepository\IHomeRepository;
 use App\Repository\HomeRepository\HomeRepository;
 use App\Repository\ProjectRepository\IProjectRepository;
@@ -37,6 +39,7 @@ class PortFolioProvider extends ServiceProvider
         $this->app->bind(IServiceRepository::class, ServiceRepository::class);
         $this->app->bind(ISkillRepository::class, SkillRepository::class);
         $this->app->bind(IProjectRepository::class, ProjectRepository::class);
+        $this->app->bind(IBlogRepository::class, BlogRepository::class);
         $this->app->bind(ILogger::class, Logger::class);
     }
 

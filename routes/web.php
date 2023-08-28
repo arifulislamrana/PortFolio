@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -46,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('skills', SkillController::class);
 
     Route::resource('projects', ProjectController::class);
+
+    Route::resource('blogs', BlogController::class);
 
 });
 
