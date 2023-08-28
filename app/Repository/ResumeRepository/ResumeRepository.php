@@ -15,7 +15,7 @@ class ResumeRepository extends BaseRepository implements IResumeRepository
     {
         if ($search != null)
         {
-            return $this->model->where('degree_name','LIKE','%'.$search.'%')->paginate(3);
+            return $this->model->where('degree_name','LIKE','%'.$search.'%')->orderBy('id', 'desc')->paginate(4);
         }
 
         return $this->model->orderBy('id', 'desc')->paginate(4);

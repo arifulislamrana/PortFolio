@@ -74,7 +74,7 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <img id="output" style="margin-top: 5%" src="/{{$slider->image}}" width="50%" height="80%">
+                                            <img id="output" style="margin-top: 5%" src="{{$slider->image}}" width="50%" height="80%">
                                         </div>
                                     </div>
                                 </div>

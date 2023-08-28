@@ -23,6 +23,7 @@
                                 <li class="breadcrumb-item"><a href="javascript:">Home</a></li>
                                 <li class="breadcrumb-item"><a href="javascript:">blog</a></li>
                             </ul>
+                            <a href="{{ route('blogs.create') }}"><button type="button" class="btn btn-primary float-right">Add New</button></a>
                         </div>
                     </div>
                 </div>

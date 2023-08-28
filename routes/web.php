@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontController::class, 'index'])->name('home');
+
+Route::get('/blog/details/{id}', [FrontController::class, 'blog'])->name('blog');
+
+Route::post('subcriber/contact',[FrontController::class, 'contact'])->name('contact');
 
 Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('login');
 

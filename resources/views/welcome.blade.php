@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Clark - Free Bootstrap 4 Template by Colorlib</title>
+    <title>{{config('app.name')}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Clark</a>
+	      <a class="navbar-brand" href="{{route('home')}}"> {{config('app.name')}}</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -48,42 +48,26 @@
 	  </nav>
 	  <section id="home-section" class="hero">
 		  <div class="home-slider  owl-carousel">
-	      <div class="slider-item ">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(/themes/front/images/bg_1.png);">
-	          		<div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Clark Thompson</span></h1>
-			            <h2 class="mb-4">A Freelance Web Designer</h2>
-			            <p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-
-	      <div class="slider-item">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row d-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(/themes/front/images/bg_2.png);">
-	          		<div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm a <span>web designer</span> based in London</h1>
-			            <p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
+	      @foreach ($homeSliders as $slider)
+		  <div class="slider-item">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row d-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+					<div class="one-third js-fullheight order-md-last img" style="background-image:url({{str_replace('\\', '/', $slider->image)}});">
+						<div class="overlay"></div>
+					</div>
+					<div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+						<div class="text">
+							<span class="subheading">Hello!</span>
+						<h1 class="mb-4 mt-3">{{ $slider->intro }}</h1>
+						<h2 class="mb-4">{{ $slider->designation }}</h2>
+						<p><a href="#" class="btn btn-primary py-3 px-4">Hire me</a> <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+					</div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		  @endforeach
 	    </div>
     </section>
 
@@ -93,7 +77,7 @@
     			<div class="col-md-6 col-lg-5 d-flex">
     				<div class="img-about img d-flex align-items-stretch">
     					<div class="overlay"></div>
-	    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(/themes/front/images/bg_1.png);">
+	    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url({{str_replace('\\', '/', $about->image)}});">
 	    				</div>
     				</div>
     			</div>
@@ -102,21 +86,21 @@
 		          <div class="col-md-12 heading-section ftco-animate">
 		          	<h1 class="big">About</h1>
 		            <h2 class="mb-4">About Me</h2>
-		            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+		            <p>"Kindness is a language that the deaf can hear and the blind can see." - Mark Twain</p>
 		            <ul class="about-info mt-4 px-md-0 px-2">
-		            	<li class="d-flex"><span>Name:</span> <span>Clark Thompson</span></li>
-		            	<li class="d-flex"><span>Date of birth:</span> <span>January 01, 1987</span></li>
-		            	<li class="d-flex"><span>Address:</span> <span>San Francisco CA 97987 USA</span></li>
-		            	<li class="d-flex"><span>Zip code:</span> <span>1000</span></li>
-		            	<li class="d-flex"><span>Email:</span> <span>clarkthomp@gmail.com</span></li>
-		            	<li class="d-flex"><span>Phone: </span> <span>+1-2234-5678-9-0</span></li>
+		            	<li class="d-flex"><span>Name:</span> <span>{{ $about->name }}</span></li>
+		            	<li class="d-flex"><span>Date of birth:</span> <span>{{ $about->dob }}</span></li>
+		            	<li class="d-flex"><span>Address:</span> <span>{{ $about->address }}</span></li>
+		            	<li class="d-flex"><span>Zip code:</span> <span>{{ $about->zip }}</span></li>
+		            	<li class="d-flex"><span>Email:</span> <span>{{ $about->email }}</span></li>
+		            	<li class="d-flex"><span>Phone: </span> <span>{{ $about->phone }}</span></li>
 		            </ul>
 		          </div>
 		        </div>
 	          <div class="counter-wrap ftco-animate d-flex mt-md-3">
               <div class="text">
               	<p class="mb-4">
-	                <span class="number" data-number="120">0</span>
+	                <span class="number" data-number="{{ count($projects) }}">0</span>
 	                <span>Project complete</span>
                 </p>
                 <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
@@ -133,51 +117,21 @@
           <div class="col-md-10 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Resume</h1>
             <h2 class="mb-4">Resume</h2>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p>"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill.</p>
           </div>
         </div>
     		<div class="row">
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Master Degree of Design</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Bachelor's Degree of C.A</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Diploma in Computer</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+    			@foreach ($resumes as $resume)
+				<div style="display: flex;
+				align-items: stretch;" class="col-md-6">
+    				<div style="flex: 1;" class="resume-wrap ftco-animate">
+    					<span class="date">{{date("Y", strtotime($resume->starting))}}-{{date("Y", strtotime($resume->ending))}}</span>
+    					<h2>{{$resume->degree_name}}</h2>
+    					<a href="{{$resume->institute_src}}"> <span class="position">{{$resume->institute}}</span> </a>
+    					<p class="mt-4">{{ $resume->description }}</p>
     				</div>
     			</div>
-
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Art &amp; Creative Director</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2015</span>
-    					<h2>Wordpress Developer</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2017-2018</span>
-    					<h2>UI/UX Designer</h2>
-    					<span class="position">Cambridge University</span>
-    					<p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				</div>
-    			</div>
+				@endforeach
     		</div>
     		<div class="row justify-content-center mt-5">
     			<div class="col-md-6 text-center ftco-animate">
@@ -193,7 +147,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Services</h1>
             <h2 class="mb-4">Services</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p>"The best way to find yourself is to lose yourself in the service of others." - Mahatma Gandhi</p>
           </div>
         </div>
     		<div class="row">
@@ -207,57 +161,18 @@
 							</div>
 						</a>
 					</div>
+					@foreach ($services as $service)
 					<div class="col-md-4 text-center d-flex ftco-animate">
 						<a href="#" class="services-1">
 							<span class="icon">
-								<i class="flaticon-flasks"></i>
+								<i class="{{ $service->icon }}"></i>
 							</span>
 							<div class="desc">
-								<h3 class="mb-5">Phtography</h3>
+								<h3 class="mb-5">{{ $service->name }}</h3>
 							</div>
 						</a>
 					</div>
-					<div class="col-md-4 text-center d-flex ftco-animate">
-						<a href="#" class="services-1">
-							<span class="icon">
-								<i class="flaticon-ideas"></i>
-							</span>
-							<div class="desc">
-								<h3 class="mb-5">Web Developer</h3>
-							</div>
-						</a>
-					</div>
-
-					<div class="col-md-4 text-center d-flex ftco-animate">
-						<a href="#" class="services-1">
-							<span class="icon">
-								<i class="flaticon-analysis"></i>
-							</span>
-							<div class="desc">
-								<h3 class="mb-5">App Developing</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-4 text-center d-flex ftco-animate">
-						<a href="#" class="services-1">
-							<span class="icon">
-								<i class="flaticon-flasks"></i>
-							</span>
-							<div class="desc">
-								<h3 class="mb-5">Branding</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-4 text-center d-flex ftco-animate">
-						<a href="#" class="services-1">
-							<span class="icon">
-								<i class="flaticon-ideas"></i>
-							</span>
-							<div class="desc">
-								<h3 class="mb-5">Product Strategy</h3>
-							</div>
-						</a>
-					</div>
+					@endforeach
 				</div>
     	</div>
     </section>
@@ -269,76 +184,23 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Skills</h1>
             <h2 class="mb-4">My Skills</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p>"Skills are the currency of the future. Continuously invest in learning and honing your skills to stay relevant in an ever-evolving world."</p>
           </div>
         </div>
 				<div class="row">
+					@foreach ($skills as $skill)
 					<div class="col-md-6 animate-box">
 						<div class="progress-wrap ftco-animate">
-							<h3>Photoshop</h3>
+							<h3>{{ $skill->name }}</h3>
 							<div class="progress">
 							 	<div class="progress-bar color-1" role="progressbar" aria-valuenow="90"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:90%">
-							    <span>90%</span>
+							  	aria-valuemin="0" aria-valuemax="100" style="width:{{$skill->percentage}}%">
+							    <span>{{ $skill->percentage }}%</span>
 							  	</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 animate-box">
-						<div class="progress-wrap ftco-animate">
-							<h3>jQuery</h3>
-							<div class="progress">
-							 	<div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:85%">
-							    <span>85%</span>
-							  	</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 animate-box">
-						<div class="progress-wrap ftco-animate">
-							<h3>HTML5</h3>
-							<div class="progress">
-							 	<div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:95%">
-							    <span>95%</span>
-							  	</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 animate-box">
-						<div class="progress-wrap ftco-animate">
-							<h3>CSS3</h3>
-							<div class="progress">
-							 	<div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:90%">
-							    <span>90%</span>
-							  	</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 animate-box">
-						<div class="progress-wrap ftco-animate">
-							<h3>WordPress</h3>
-							<div class="progress">
-							 	<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:70%">
-							    <span>70%</span>
-							  	</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 animate-box">
-						<div class="progress-wrap ftco-animate">
-							<h3>SEO</h3>
-							<div class="progress">
-							 	<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-							  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-							    <span>80%</span>
-							  	</div>
-							</div>
-						</div>
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</section>
@@ -349,69 +211,22 @@
     		<div class="row justify-content-center pb-5">
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Our Projects</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <h2 class="mb-4">My Projects</h2>
+            <p>"Projects are the bridge between ideas and reality. They showcase not only what you create, but your ability to innovate, collaborate, and bring concepts to life."</p>
           </div>
         </div>
     		<div class="row">
-    			<div class="col-md-4">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/themes/front/images/project-4.jpg);">
+    			@for ($i = 0; $i < count($projects); $i++)
+				  <div class="col-md-6">
+    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url({{str_replace('\\', '/', $projects[$i]->image)}});">
     					<div class="overlay"></div>
 	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
+	    					<h3><a href="#">{{ $projects[$i]->name }}</a></h3>
+	    					<span>{{ $projects[$i]->title }}</span>
 	    				</div>
     				</div>
   				</div>
-  				<div class="col-md-8">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/themes/front/images/project-5.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-  				</div>
-
-    			<div class="col-md-8">
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/themes/front/images/project-1.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-
-    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/themes/front/images/project-6.jpg);">
-    					<div class="overlay"></div>
-	    				<div class="text text-center p-4">
-	    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-	    					<span>Web Design</span>
-	    				</div>
-    				</div>
-    			</div>
-    			<div class="col-md-4">
-    				<div class="row">
-    					<div class="col-md-12">
-		    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/themes/front/images/project-2.jpg);">
-		    					<div class="overlay"></div>
-			    				<div class="text text-center p-4">
-			    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-			    					<span>Web Design</span>
-			    				</div>
-		    				</div>
-	    				</div>
-	    				<div class="col-md-12">
-		    				<div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/themes/front/images/project-3.jpg);">
-		    					<div class="overlay"></div>
-			    				<div class="text text-center p-4">
-			    					<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-			    					<span>Web Design</span>
-			    				</div>
-		    				</div>
-	    				</div>
-    				</div>
-    			</div>
+				  @endfor
     		</div>
     	</div>
     </section>
@@ -422,116 +237,33 @@
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h1 class="big big-2">Blog</h1>
-            <h2 class="mb-4">Our Blog</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <h2 class="mb-4">My Blog</h2>
+            <p>"Blogs are a canvas of thoughts, a platform to share insights, and a doorway to engage with a wider world. Each post is a brushstroke of knowledge painted on the canvas of the digital realm."</p>
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="single.html" class="block-20" style="background-image: url('/themes/front/images/image_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-              	<div class="d-flex align-items-center mb-3 meta">
-	                <p class="mb-0">
-	                	<span class="mr-2">June 21, 2019</span>
-	                	<a href="#" class="mr-2">Admin</a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-	                </p>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="single.html" class="block-20" style="background-image: url('/themes/front/images/image_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-              	<div class="d-flex align-items-center mb-3 meta">
-	                <p class="mb-0">
-	                	<span class="mr-2">June 21, 2019</span>
-	                	<a href="#" class="mr-2">Admin</a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-	                </p>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="single.html" class="block-20" style="background-image: url('/themes/front/images/image_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-              	<div class="d-flex align-items-center mb-3 meta">
-	                <p class="mb-0">
-	                	<span class="mr-2">June 21, 2019</span>
-	                	<a href="#" class="mr-2">Admin</a>
-	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-	                </p>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-    	<div class="container">
-				<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="100">0</strong>
-                <span>Awards</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="1200">0</strong>
-                <span>Complete Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="1200">0</strong>
-                <span>Happy Customers</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="500">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-hireme img margin-top" style="background-image: url(/themes/front/images/bg_1.jpg)">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>I'm <span>Available</span> for freelancing</h2>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<p class="mb-0"><a href="#" class="btn btn-primary py-3 px-5">Hire me</a></p>
-					</div>
-				</div>
+          @foreach ($blogs as $blog)
+		  <div class="col-md-4 d-flex ftco-animate">
+			<div class="blog-entry justify-content-end">
+			<a href="{{ route('blog', ['id' => $blog->id]) }}" class="block-20" style="background-image: url({{str_replace('\\', '/', $blog->image)}});">
+			</a>
+			<div class="text mt-3 float-right d-block">
+				<div class="d-flex align-items-center mb-3 meta">
+				  <p class="mb-0">
+					  <span class="mr-2">{{$blog->created_at}}</span>
+					  <a href="#" class="mr-2">Admin</a>
+					  <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+				  </p>
+			  </div>
+			  <h3 class="heading"><a href="{{ route('blog', ['id' => $blog->id]) }}">{{ $blog->title }}</a></h3>
+			  <p>{{ substr(strip_tags($blog->body), 0, 50) }}...</p>
 			</div>
-		</section>
+		  </div>
+		</div>
+		  @endforeach
+        </div>
+      </div>
+    </section>
 
     <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
       <div class="container">
@@ -539,7 +271,7 @@
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h1 class="big big-2">Contact</h1>
             <h2 class="mb-4">Contact Me</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p>"Let's connect and build bridges of communication. Reach out, and let's collaborate to turn ideas into reality."</p>
           </div>
         </div>
 
@@ -550,7 +282,7 @@
           			<span class="icon-map-signs"></span>
           		</div>
           		<h3 class="mb-4">Address</h3>
-	            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+	            <p>{{ $about->address }}</p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -559,7 +291,7 @@
           			<span class="icon-phone2"></span>
           		</div>
           		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+	            <p><a href="tel://1234567920">{{ $about->phone }}</a></p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -568,7 +300,7 @@
           			<span class="icon-paper-plane"></span>
           		</div>
           		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+	            <p><a href="mailto:info@yoursite.com">{{ $about->email }}</a></p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -581,21 +313,39 @@
 	          </div>
           </div>
         </div>
-
+		@if(count($errors) > 0 )
+		<div class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+		  </button>
+		  <ul class="p-0 m-0" style="list-style: none;">
+			  @foreach($errors->all() as $error)
+			  <li>{{$error}}</li>
+			  @endforeach
+		  </ul>
+		</div>
+	  @endif
+	  @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ session()->get('message') }}
+            </div>
+            @endif
         <div class="row no-gutters block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
+            <form action="{{ route('contact') }}" method="POST" class="bg-light p-4 p-md-5 contact-form">
+				@csrf
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
@@ -605,7 +355,7 @@
           </div>
 
           <div class="col-md-6 d-flex">
-          	<div class="img" style="background-image: url(/themes/front/images/about.jpg);"></div>
+          	<div class="img" style="background-image: url({{str_replace('\\', '/', $about->image)}});"></div>
           </div>
         </div>
       </div>
@@ -655,9 +405,9 @@
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">{{ $about->address }}</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">{{ $about->phone }}</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{ $about->email }}</span></a></li>
 	              </ul>
 	            </div>
             </div>
